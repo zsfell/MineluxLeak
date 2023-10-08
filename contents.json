@@ -1,0 +1,65 @@
+{
+   "content" : [
+      {
+      "path" : "textures/ui/sb/Black_sb.json"
+      },
+      {
+        "path" : "textures/ui/sb/Black_sb.png"
+      },
+      {
+         "path" : "ui/hud_screen.json"
+      },
+      {
+         "path" : "ui/pause_screen.json"
+      },
+      {
+         "path" : "ui/scoreboards.json"
+      },
+      {
+         "path" : "ui/toast_screen.json"
+      },
+      {
+        "path" : "ui/_global_variables.json"
+      },
+      {
+        "path" : "textures/ui/cps.json"
+      },
+      {
+        "path" : "textures/ui/cps.png"
+      },
+      {
+        "path" : "textures/ui/title.png"
+      },
+      {
+        "path" : "sounds/random/click.ogg"
+      },
+      {
+        "path" : "sounds/music/game/records/cat.ogg"
+      },
+      {
+        "path" : "sounds/music/game/records/far.ogg"
+      },
+      {
+        "path" : "sounds/music/game/records/mall.ogg"
+      },
+      {
+        "path" : "sounds/random/toast.ogg"
+      },
+      {
+        "path" : "font/glyph_E0.png"
+      },
+      {
+        "path" : "font/glyph_E1.png"
+      },
+      {
+        "path" : "font/glyph_E2.png"
+      },
+      {
+        "path" : "font/glyph_E3.png"
+      },
+      {
+        "path" : "font/glyph_E4.png"
+      }
+   ],
+   "version" : 1
+}

@@ -1,0 +1,17 @@
+{
+  "format_version": 1,
+  "header": {
+    "description": "",
+    "name": "§l§eMinelux §6Network",
+    "uuid": "c4998f8e-1f7e-11ee-be56-0242ac120002",
+    "version": [2, 0, 0]
+  },
+  "modules": [
+    {
+      "description": "",
+      "type": "resources",
+      "uuid": "03159d4c-b140-4c55-863b-4528a7506325",
+      "version": [2, 0, 0]
+    }
+  ]
+}

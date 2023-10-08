@@ -1,0 +1,209 @@
+{
+	"namespace": "toast_screen",
+	"popup_anim_wait": {
+		"anim_type": "wait",
+		"duration": 8,
+		"next": "@toast_screen.popup_anim_end"
+	},
+	"popup_anim_start": {
+		"anim_type": "offset",
+		"easing": "spring",
+		"from": [0, 0],
+		"to": "$popup_distance",
+		"duration": "$transition_in_time",
+		"next": "@toast_screen.popup_anim_wait"
+	},
+	"popup_anim_end": {
+		"anim_type": "offset",
+		"easing": "in_sine",
+		"to": [0, 0],
+		"from": "$popup_distance",
+		"duration": "$transition_out_time",
+		"destroy_at_end": "popup",
+		"end_event": "toast_end"
+	},
+	"toast_label": {
+		"$toast_font_type|default": "default",
+		"$toast_label_offset|default": [0, 5],
+		"type": "label",
+		"color": "$toast_text_color",
+		"layer": 1,
+		"p": true,
+		"font_size": "normal",
+		"offset": "$toast_label_offset",
+		"$toast_text_alignment|default": "left",
+		"text_alignment": "$toast_text_alignment",
+		"anims": "$alpha_anims",
+		"font_type": "$toast_font_type",
+		"shadow": true
+	},
+	"popup@common.input_panel": {
+		"$toast_anchor_from|default": "top_right",
+		"$toast_anchor_to|default": "bottom_right",
+		"$toast_offset|default": [0, 0],
+		"anchor_from": "$toast_anchor_from",
+		"anchor_to": "$toast_anchor_to",
+		"size": ["100%cm", "25px"],
+		"offset": "$toast_offset",
+		"$offset_anims|default": ["@toast_screen.popup_anim_start"],
+		"$alpha_anims|default": [],
+		"controls": [{
+			"background": {
+				"type": "image",
+				"texture": "textures/ui/greyBorderToast",
+				"alpha": 0.7,
+				"anims": "$alpha_anims",
+				"anchor_from": "top_right",
+				"anchor_to": "top_right",
+				"size": ["100%sm + 15px", "100%sm + 4px"],
+				"offset": [-1, 0]
+			}
+		}, {
+			"popup_content": {
+				"type": "stack_panel",
+				"orientation": "horizontal",
+				"size": ["100%cm", "100%"],
+				"anchor_from": "top_right",
+				"anchor_to": "top_right",
+				"offset": [-9, 2],
+				"layer": 1,
+				"controls": [{
+					"icon_padding": {
+						"layer": 1,
+						"type": "stack_panel",
+						"anchor_from": "top_left",
+						"anchor_to": "top_left",
+						"size": ["100%cm", "100%"],
+						"factory": {
+							"name": "toast_image_factory",
+							"control_ids": {
+								"xbox_icon": "@toast_screen.xbox_icon",
+								"third_party_achievement_icon": "@toast_screen.third_party_achievement_icon",
+								"third_party_invite_icon": "@toast_screen.third_party_invite_icon",
+								"icon_resource_pack": "@toast_screen.resource_pack_icon",
+								"key_art_image": "@toast_screen.key_art_image",
+								"persona_icon": "@toast_screen.persona_icon"
+							},
+							"factory_variables": ["$hide_xbox_live_icon"]
+						},
+						"bindings": [{
+							"binding_type": "global",
+							"binding_name": "#toast_icon_section_content",
+							"binding_name_override": "#collection_length"
+						}]
+					}
+				}, {
+					"text_padding": {
+						"type": "panel",
+						"size": [4, "100%"],
+						"bindings": [{
+							"binding_name": "#text_padding_visible",
+							"binding_name_override": "#visible"
+						}]
+					}
+				}, {
+					"text_panel": {
+						"type": "panel",
+						"size": ["100%cm", "100%"],
+						"controls": [{
+							"text_stack_panel@toast_screen.text_stack_panel": {}
+						}]
+					}
+				}]
+			}
+		}],
+		"anims": "$offset_anims"
+	},
+	"text_stack_panel": {
+		"type": "stack_panel",
+		"size": ["100%cm", 20],
+		"$toast_text_offset|default": [0, 1],
+		"offset": "$toast_text_offset",
+		"controls": [{
+			"title@toast_screen.toast_label": {
+				"text": "#toast_title",
+				"color": "$toast_text_color",
+				"size": ["default", "fill"],
+				"layer": 2,
+				"bindings": [{
+					"binding_name": "#toast_title"
+				}]
+			}
+		}, {
+			"subtitle": {
+				"type": "stack_panel",
+				"orientation": "horizontal",
+				"size": ["100%cm", "100%cm"],
+				"controls": [{
+					"icon_padding": {
+						"type": "panel",
+						"size": [9, 7],
+						"bindings": [{
+							"binding_name": "#is_achievement",
+							"binding_name_override": "#visible"
+						}],
+						"controls": [{
+							"gamer_score_icon@toast_screen.gamer_score_icon": {
+								"layer": 1,
+								"anchor_from": "left_middle",
+								"anchor_to": "left_middle"
+							}
+						}]
+					}
+				}, {
+					"subtext_offset@common.empty_panel": {
+						"size": ["100%cm", 10],
+						"bindings": [{
+							"binding_name": "#toast_subtitle_visible",
+							"binding_name_override": "#visible"
+						}],
+						"controls": [{
+							"subtext@toast_screen.toast_label": {
+								"size": ["default", "100%"],
+								"offset": [0, -1],
+								"text": "#toast_subtitle",
+								"bindings": [{
+									"binding_name": "#toast_subtitle"
+								}, {
+									"binding_name": "#toast_font_type",
+									"binding_name_override": "#font_type"
+								}]
+							}
+						}]
+					}
+				}]
+			}
+		}]
+	},
+	"toast_screen@common.base_screen": {
+		"send_telemetry": false,
+		"screen_not_flushable": true,
+		"render_game_behind": true,
+		"is_showing_menu": false,
+		"is_modal": true,
+		"low_frequency_rendering": true,
+		"should_steal_mouse": false,
+		"render_only_when_topmost": false,
+		"screen_draws_last": true,
+		"$screen_content": "toast_screen.toast_screen_content",
+		"$screen_animations": [],
+		"$use_loading_bars": false
+	},
+	"toast_screen_content": {
+		"type": "panel",
+		"clips_children": true,
+		"factory": {
+			"name": "toast_factory",
+			"control_ids": {
+				"popup": "popup@toast_screen.popup",
+				"splitscreen_join_popup": "splitscreen_join_popup@toast_screen.splitscreen_join_popup",
+				"formfitting_alpha_toast": "formfitting_alpha_toast"
+			}
+		},
+		"controls": [{
+			"content_log_panel@content_log.content_log_panel": {}
+		}, {
+			"perf_turtle_panel@perf_turtle.perf_turtle_panel": {}
+		}]
+	}
+}

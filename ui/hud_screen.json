@@ -1,0 +1,13 @@
+{
+  "chat_label": {
+    "type": "label",
+    "line_padding": "($chat_line_spacing + 1)"
+  },
+  "hud_tip_text": {
+    "offset": [
+      0,
+      -56
+    ],
+    "texture": "textures/ui/cps"
+  }
+}
